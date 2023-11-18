@@ -1,0 +1,12 @@
+<nz-card nzTitle="Profile" *ngIf="user.role === 'hospitals'">
+    <form [formGroup]="hospitalForm" (ngSubmit)="onSubmit('hospitals', model)">
+      <formly-form [form]="hospitalForm" [fields]="hFields" [model]="model"></formly-form>
+      <button type="submit" nz-button nzType="primary" [disabled]="!hospitalForm.valid">Update</button>
+    </form>
+</nz-card>
+<nz-card nzTitle="Profile" *ngIf="user.role === 'users'">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit('users', model)">
+      <formly-form [form]="userForm" [fields]="fields" [model]="model"></formly-form>
+      <button type="submit" nz-button nzType="primary" [disabled]="!userForm.valid">Update</button>
+    </form>
+</nz-card>

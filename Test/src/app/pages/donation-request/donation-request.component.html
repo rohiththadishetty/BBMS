@@ -1,0 +1,65 @@
+<div *ngIf="loading">
+loading...
+</div>
+<div *ngIf="!loading" class="ctable">
+    <nz-card nzTitle="Blood Donation Request Details">
+    <nz-table [nzData]="[1]" nzShowPagination="false">
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Request Id</strong></td>
+                <td>{{ donation?.id }}</td>
+          </tr>
+          <tr>
+            <td><strong>Status</strong></td>
+            <td>{{ donation?.status }}</td>
+          <tr>
+            <td><strong>Name</strong></td>
+            <td>{{ donation?.donor?.name }}</td>
+          </tr>
+          <tr>
+            <td><strong>Email</strong></td>
+            <td>{{ donation?.donor?.email }}</td>
+          </tr>
+          <tr>
+            <td><strong>Mobile</strong></td>
+            <td>{{ donation?.donor?.mobile }}</td>
+          </tr>
+          <tr>
+            <td><strong>Age</strong></td>
+            <td>{{ donation?.donor?.age }}</td>
+          </tr>
+          <tr>
+            <td><strong>Blood Group</strong></td>
+            <td>{{ donation?.donor?.bloodGroup?.name }}</td>
+          </tr>
+          <tr>
+            <td><strong>Donation Date</strong></td>
+            <td>{{ donation?.donationDate | date }}</td>
+          </tr>
+          <tr>
+            <td><strong>Amount of Blood</strong></td>
+            <td>{{ donation?.bloodAmount | litre }}</td>
+          </tr>
+          <tr>
+            <td><strong>Comments</strong></td>
+            <td>{{ donation?.comments }}</td>
+          </tr>
+        </tbody>
+    </nz-table>
+    
+    <div class="actions" *ngIf="!donation.isReceived && user.role === 'admins'">
+        <button nz-button nzType="primary" nzDanger *ngIf="!donation.isCancelled" (click)="cancelRequest()">Mark as Cancelled</button>
+        <button nz-button nzType="primary"  *ngIf="!donation.isCancelled && !donation.isAccepted" (click)="acceptRequest()">Mark as Accepted</button>
+        <button nz-button nzType="primary" *ngIf="!donation.isCancelled && donation.isAccepted && !donation.isReceived" class="success-button" (click)="fulfillRequest()">Mark as Received</button>
+    </div>
+    <div class="actions" *ngIf="!donation.isReceived && user.role === 'users'">
+        <button nz-button nzType="primary" nzDanger *ngIf="!donation.isCancelled" (click)="cancelRequest()">Cancel Request</button>
+    </div>
+</nz-card>
+</div>

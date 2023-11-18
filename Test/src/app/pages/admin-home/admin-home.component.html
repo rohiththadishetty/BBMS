@@ -1,0 +1,16 @@
+<nz-table [nzData]="bloodGroups" [nzBordered]="true" nzShowPagination="false">
+    <thead>
+      <tr>
+        <th>Group</th>
+        <th>Available qty</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of bloodGroups">
+        <td>{{ data.name }}</td>
+        <td>{{ data.bloodAmount | litre }}</td>
+        
+      </tr>
+    </tbody>
+</nz-table>
+  

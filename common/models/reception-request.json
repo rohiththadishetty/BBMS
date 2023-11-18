@@ -1,0 +1,68 @@
+{
+  "name": "ReceptionRequest",
+  "plural": "reception-requests",
+  "base": "Base",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "receptorId": {
+      "type": "string",
+      "required": true
+    },
+    "comments": {
+      "type": "string"
+    },
+    "bloodAmount": {
+      "type": "number"
+    },
+    "receptionDate": {
+      "type": "date",
+      "required": true
+    },
+    "status": {
+      "type": "string",
+      "required": true,
+      "default": "OPEN"
+    },
+    "isCancelled": {
+      "type": "boolean",
+      "default": false
+    },
+    "isAccepted": {
+      "type": "boolean",
+      "default": false
+    },
+    "isDelivered": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "validations": [],
+  "relations": {
+    "receptor": {
+      "type": "belongsTo",
+      "model": "Hospital",
+      "foreignKey": "receptorId"
+    },
+    "bloodGroup": {
+      "type": "belongsTo",
+      "model": "BloodGroup",
+      "foreignKey": "bloodGroupId",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "fulfill"
+    }
+  ],
+  "methods": {}
+}

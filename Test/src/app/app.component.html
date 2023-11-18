@@ -1,0 +1,34 @@
+<nz-layout>
+  <nz-header>
+    <div class="logo">BBMS</div>
+  </nz-header>
+  <nz-content class="outer-content">
+    <nz-layout class="inner-layout">
+      <nz-sider nzWidth="200px" nzTheme="light" *ngIf="role">
+        <ul nz-menu nzMode="inline" class="sider-menu" *ngIf="role == 'users'">
+          <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/user/home']">Home</li>
+          <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/user/donate']">Donate</li>
+          <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/user/history']">History</li>
+          <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/profile']">Profile</li>
+          <li nz-menu-item (click)="doLogout()">Logout</li>
+        </ul>
+        <ul nz-menu nzMode="inline" class="sider-menu" *ngIf="role == 'hospitals'">
+          <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/hospital/home']">Home</li>
+          <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/hospital/receive']">Receive</li>
+          <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/hospital/history']">History</li>
+          <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/profile']">Profile</li>
+          <li nz-menu-item (click)="doLogout()">Logout</li>
+        </ul>
+        <ul nz-menu nzMode="inline" class="sider-menu" *ngIf="role == 'admins'">
+          <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/admin/home']">Home</li>
+          <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/admin/donations']">Donation requests</li>
+          <li nz-menu-item routerLinkActive="ant-menu-item-selected" [routerLink]="['/admin/receptions']">Reception requests</li>
+          <li nz-menu-item (click)="doLogout()">Logout</li>
+        </ul>
+      </nz-sider>
+      <nz-content class="inner-content">
+        <router-outlet></router-outlet>
+      </nz-content>
+    </nz-layout>
+  </nz-content>
+</nz-layout>

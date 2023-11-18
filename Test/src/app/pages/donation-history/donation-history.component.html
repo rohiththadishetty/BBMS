@@ -1,0 +1,25 @@
+<div class="ctable">
+<nz-card nzTitle="Your Donation History">
+    <nz-table [nzData]="fullProfile?.['donation-requests']">
+        <thead>
+          <tr>
+            <th>SNo</th>
+            <th>Donation Date</th>
+            <th>Blood Amount</th>
+            <th>Comments</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of fullProfile?.['donation-requests'], let i = index" [routerLink]="['/donation-request', item.id]">
+            <td>{{ i+1 }}</td>
+            <td>{{ item.donationDate | date }}</td>
+            <td>{{ item.bloodAmount | litre }}</td>
+            <td>{{ item.comments }}</td>
+            <td>{{ item.status }}</td>
+          </tr>
+        </tbody>
+    </nz-table>
+</nz-card>
+</div>
+

@@ -1,0 +1,67 @@
+<div *ngIf="loading">
+    loading...
+    </div>
+    <div *ngIf="!loading" class="ctable">
+        <nz-card nzTitle="Blood Reception Request Details">
+        <nz-table [nzData]="[1]" nzShowPagination="false">
+            <thead>
+              <tr>
+                <th>Key</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                    <td><strong>Request Id</strong></td>
+                    <td>{{ reception?.id }}</td>
+              </tr>
+              <tr>
+                <td><strong>Status</strong></td>
+                <td>{{ reception?.status }}</td>
+             </tr>
+              <tr>
+                <td><strong>Hospital Name</strong></td>
+                <td>{{ reception?.receptor?.name }}</td>
+              </tr>
+              <tr>
+                <td><strong>Hospital Email</strong></td>
+                <td>{{ reception?.receptor?.email }}</td>
+              </tr>
+              <tr>
+                <td><strong>Hospital Mobile</strong></td>
+                <td>{{ reception?.receptor?.mobile }}</td>
+              </tr>
+              <tr>
+                <td><strong>Patient Details</strong></td>
+                <td>{{ reception?.patientDetails }}</td>
+              </tr>
+              <tr>
+                <td><strong>Blood Group</strong></td>
+                <td>{{ reception?.bloodGroup?.name }}</td>
+              </tr>
+              <tr>
+                <td><strong>Reception Date</strong></td>
+                <td>{{ reception?.receptionDate | date }}</td>
+              </tr>
+              <tr>
+                <td><strong>Amount of Blood</strong></td>
+                <td>{{ reception?.bloodAmount | litre }}</td>
+              </tr>
+              <tr>
+                <td><strong>Comments</strong></td>
+                <td>{{ reception?.comments }}</td>
+              </tr>
+            </tbody>
+        </nz-table>
+        
+        <div class="actions" *ngIf="!reception.isDelivered && user.role === 'admins'">
+            <button nz-button nzType="primary" nzDanger *ngIf="!reception.isCancelled" (click)="cancelRequest()">Mark as Cancelled</button>
+            <button nz-button nzType="primary"  *ngIf="!reception.isCancelled && !reception.isAccepted" (click)="acceptRequest()">Mark as Accepted</button>
+            <button nz-button nzType="primary" *ngIf="!reception.isCancelled && reception.isAccepted && !reception.isDelivered" class="success-button" (click)="fulfillRequest()">Mark as Received</button>
+        </div>
+        <div class="actions" *ngIf="!reception.isDelivered && user.role === 'hospitals'">
+            <button nz-button nzType="primary" nzDanger *ngIf="!reception.isCancelled" (click)="cancelRequest()">Cancel Request</button>
+        </div>
+    </nz-card>
+    </div>
+    

@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    font-family: tahoma;
+}
+
+.ant-form-item-label > label {
+    width: 200px;
+}
+
+.ant-card-head {
+    // background: #e91e63;
+    // color: #fff;
+}
+
+.ant-layout-header {
+    background: #e91e63;
+}
+
+.ant-form-item-label > label:not(.ant-form-item-required-mark-optional)::before {
+    display: inline-block;
+    margin-right: 4px;
+    color: #ff4d4f;
+    font-size: 14px;
+    font-family: SimSun, sans-serif;
+    line-height: 1;
+    content: '*';
+}
+
+.m100 {
+    margin: 0px 200px;
+}
+
+.ctable  .ant-card-body {
+    padding: 2px !important;
+}

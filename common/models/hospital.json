@@ -1,0 +1,33 @@
+{
+  "name": "Hospital",
+  "plural": "hospitals",
+  "base": "Users",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "registrationNumber": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "reception-requests": {
+      "type": "hasMany",
+      "model": "ReceptionRequest",
+      "foreignKey": "receptorId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

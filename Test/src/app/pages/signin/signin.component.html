@@ -1,0 +1,20 @@
+<div class="m100">
+    <nz-tabset>
+        <nz-tab nzTitle="User">
+            <nz-card nzTitle="User Login">
+                <form [formGroup]="userForm" (ngSubmit)="onSubmit('users', userModel)">
+                  <formly-form [form]="userForm" [fields]="fields" [model]="userModel"></formly-form>
+                  <button type="submit" nz-button nzType="primary" [disabled]="!userForm.valid">Login</button> or <a [routerLink]="['/signup']">Signup</a> / <a [routerLink]="['/password-reset']">Forgot password</a>
+                </form>
+            </nz-card>
+        </nz-tab>
+        <nz-tab nzTitle="Hospital">
+            <nz-card nzTitle="Hospital Login">
+                <form [formGroup]="hospitalForm" (ngSubmit)="onSubmit('hospitals', hospitalModel)">
+                  <formly-form [form]="hospitalForm" [fields]="hFields" [model]="hospitalModel"></formly-form>
+                  <button type="submit" nz-button nzType="primary" [disabled]="!hospitalForm.valid">Login</button>or <a [routerLink]="['/signup']">Signup</a> / <a [routerLink]="['/password-reset']">Forgot password</a>
+                </form>
+            </nz-card>
+        </nz-tab>
+    </nz-tabset>
+</div>

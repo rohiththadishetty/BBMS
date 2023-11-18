@@ -1,0 +1,8 @@
+<div class="m100">
+    <nz-card nzTitle="Admin Login">
+        <form [formGroup]="adminForm" (ngSubmit)="onSubmit('admins', adminModel)">
+        <formly-form [form]="adminForm" [fields]="fields" [model]="adminModel"></formly-form>
+        <button type="submit" nz-button nzType="primary" [disabled]="!adminForm.valid">Submit</button>
+        </form>
+    </nz-card>
+</div>

@@ -1,0 +1,53 @@
+{
+  "name": "Users",
+  "plural": "users",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "scope": {
+    "include": "bloodGroup"
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "mobile": {
+      "type": "string"
+    },
+    "age": {
+      "type": "number"
+    },
+    "bloodGroupId": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "donation-requests": {
+      "type": "hasMany",
+      "model": "DonationRequest",
+      "foreignKey": "donorId",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "bloodGroup": {
+      "type": "belongsTo",
+      "model": "BloodGroup",
+      "foreignKey": "bloodGroupId"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "__get_donation-requests"
+    }
+  ],
+  "methods": {}
+}

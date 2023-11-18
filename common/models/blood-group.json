@@ -1,0 +1,19 @@
+{
+  "name": "BloodGroup",
+  "plural": "blood-groups",
+  "base": "Base",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

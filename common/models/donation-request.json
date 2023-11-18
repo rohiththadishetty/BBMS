@@ -1,0 +1,65 @@
+{
+  "name": "DonationRequest",
+  "plural": "donation-requests",
+  "base": "Base",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "scope": {
+    "order": "donationDate DESC"
+  },
+  "properties": {
+    "donorId": {
+      "type": "string",
+      "required": true
+    },
+    "comments": {
+      "type": "string"
+    },
+    "donationDate": {
+      "type": "date",
+      "required": true
+    },
+    "status": {
+      "type": "string",
+      "required": true,
+      "default": "OPEN"
+    },
+    "isCancelled": {
+      "type": "boolean",
+      "default": false
+    },
+    "isAccepted": {
+      "type": "boolean",
+      "default": false
+    },
+    "isReceived": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "validations": [],
+  "relations": {
+    "donor": {
+      "type": "belongsTo",
+      "model": "Users",
+      "foreignKey": "donorId"
+    },
+    "bloodGroup": {
+      "type": "belongsTo",
+      "model": "BloodGroup",
+      "foreignKey": "bloodGroupId"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "fulfill"
+    }
+  ],
+  "methods": {}
+}
